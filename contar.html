@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Contador</title>
+</head>
+<body>
+    <header>
+        <h1>Vamos Contar?</h1>
+    </header>
+
+    <section>
+        <div id="dados">
+            <p>
+                Inicio:
+
+                <input id="txti" name="inicio" type="number">
+            </p>
+
+            <p>
+                Fim:
+
+                <input id="txtf" name="fim" type="number">
+            </p>
+
+            <p>
+                Passo:
+
+                <input id="txtp" name="passo" type="number">
+            </p>
+
+            <p>
+                <input type="button" value="Contar" onclick="contar()">
+            </p>
+        </div>
+
+        <div id="res">
+            Preparando a contagem...
+        </div>
+    </section>
+
+    <footer>
+        <h1>&copy; Jackson</h1>
+    </footer>
+
+    <style>
+        body {
+            background-color: rgb(70, 142, 236);
+            font: normal 15pt arial
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.363);
+        }
+
+        div {
+            text-align: center;
+            padding: 8px;
+        }
+
+        div img {
+            width: 100%;
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.8rem;
+        }
+    </style>
+
+    <script>
+        function contar() {
+            let ini = document.getElementById("txti");
+            let fim = document.getElementById("txtf");
+            let passo = document.getElementById("txtp");
+            let res = document.getElementById("res");
+
+            if (ini.value.length == 0 || fim.value.length == 0 || passo.value.length == 0) {
+                res.innerHTML = "Não foi possível contar";
+                return;
+            }
+
+            res.innerHTML = "Contando: <br>";
+
+            let i = Number(ini.value);
+            let f = Number(fim.value);
+            let p = Number(passo.value);
+
+            if (p <= 0) {
+                alert("Passo inválido!\nSerá considerado passo = 1");
+                p = 1;
+            }
+
+            if (i < f) {
+                for (let j = i; j < f; j += p) {
+                    res.innerHTML += ` ${j + 1} \u{1F449}`;
+                }
+            }
+
+            else {
+                for (let j = i; j > f; j -= p) {
+                    res.innerHTML += ` ${j - 1} \u{1F449}`;
+                }
+            }
+
+            res.innerHTML += "\u{1F3C1}";
+        }
+    </script>
+</body>
+</html>
